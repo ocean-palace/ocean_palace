@@ -30,7 +30,7 @@ const jellyfish_tank = [
       inner: '#000000',
       outer: '#666666'
     },
-    movement_seeds: [ 61, 36 -15, 100, -86, -121 ]
+    movement_seeds: [ 61, 36, -15, 100, -86, -121 ]
   },
   {
     type: 'jellyfish_8-4',
@@ -40,7 +40,7 @@ const jellyfish_tank = [
       inner: '#990066',
       outer: '#330066'
     },
-    movement_seeds: [ 31, 26 -14, 41, -113, 92 ]
+    movement_seeds: [ 31, 26, -14, 41, -113, 92 ]
   }
 ];
 
