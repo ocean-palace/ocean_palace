@@ -20,6 +20,7 @@ const jellyfish_tank = [
       inner: '#999900',
       outer: '#339966'
     },
+    rotate_speed: -0.0096,
     movement_seeds: [ 11, -119, -14, 21, -99, -97 ]
   },
   {
@@ -30,6 +31,7 @@ const jellyfish_tank = [
       inner: '#000000',
       outer: '#666666'
     },
+    rotate_speed: -0.00875,
     movement_seeds: [ 61, 36, -15, 100, -86, -121 ]
   },
   {
@@ -40,6 +42,7 @@ const jellyfish_tank = [
       inner: '#990066',
       outer: '#330066'
     },
+    rotate_speed: 0.002982,
     movement_seeds: [ 31, 26, -14, 41, -113, 92 ]
   }
 ];
@@ -50,14 +53,14 @@ function main_function() {
   const now_time = start_time + performance.now();
   let new_frame = aquarium_frame;
 
-  for(let jellyfish_index in jellyfish_tank) {
+  for(const jellyfish_index in jellyfish_tank) {
     let new_jellyfish = jellyfish_tank[jellyfish_index];
 
     new_jellyfish.central = {
       x: 1024 + (1024 - new_jellyfish.radius * 13 / 12) * new_jellyfish.movement_seeds.reduce((sum, seed, seed_index) => sum + Math.cos(now_time * seed / speed_control) / 2 ** (seed_index + 1), 0),
       y: 1024 + (1024 - new_jellyfish.radius * 13 / 12) * new_jellyfish.movement_seeds.reduce((sum, seed, seed_index) => sum + Math.sin(now_time * seed / speed_control) / 2 ** (seed_index + 1), 0)
     };
-    new_jellyfish.rotate_angle = new_jellyfish.movement_seeds.reduce((sum, seed, seed_index) => sum + now_time * seed / speed_control * 2 ** (seed_index + 1), 0) % 360;
+    new_jellyfish.rotate_angle = new_jellyfish.rotate_speed * now_time % 360;
 
     new_frame += jellyfish_svg_maker(new_jellyfish, jellyfish_index);
   }
